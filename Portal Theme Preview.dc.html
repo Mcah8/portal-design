@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="_ds/jet-interactive-design-system-162a94a6-5028-44eb-9df7-0f3e3efc112d/colors_and_type.css">
+<script src="_ds/jet-interactive-design-system-162a94a6-5028-44eb-9df7-0f3e3efc112d/_ds_bundle.js"></script>
+<style>
+  *{ box-sizing:border-box; }
+  html,body{ margin:0; padding:0; }
+  .ji-scroll::-webkit-scrollbar{ width:10px; height:10px; }
+  .ji-scroll::-webkit-scrollbar-thumb{ background:var(--border,#DCE6F3); border-radius:99px; }
+  .ji-scroll::-webkit-scrollbar-track{ background:transparent; }
+</style>
+</helmet>
+
+<div style="position:relative; height:100vh; width:100%; overflow:hidden; font-family:'Barlow', system-ui, -apple-system, sans-serif;">
+  <div style="{{ paletteStyle }}">
+
+    <!-- ============ LEFT SIDEBAR ============ -->
+    <aside style="grid-row:1 / span 2; width:56px; background:var(--surface,#fff); border-right:1px solid var(--divider,#EAEFF6); display:flex; flex-direction:column; align-items:center; padding:14px 0; gap:2px; z-index:5;">
+      <div style="width:34px; height:34px; display:flex; align-items:center; justify-content:center; color:#ED1C24; margin-bottom:10px;">
+        <svg data-mdi="star" width="22" height="22" viewBox="0 0 24 24"><path fill="currentColor" d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.62L12 2L9.19 8.62L2 9.24l5.45 4.73L5.82 21z"/></svg>
+      </div>
+      <sc-for list="{{ sidebar }}" as="s" hint-placeholder-count="8">
+        <div style="{{ s.style }}" title="{{ s.name }}">
+          <span style="width:22px; height:22px; display:block;" data-icon="{{ s.icon }}"></span>
+        </div>
+      </sc-for>
+    </aside>
+
+    <!-- ============ TOP BAR ============ -->
+    <header style="grid-column:2; grid-row:1; height:64px; background:var(--surface,#fff); border-bottom:1px solid var(--divider,#EAEFF6); display:flex; align-items:center; justify-content:flex-end; gap:12px; padding:0 22px;">
+      <div style="display:flex; align-items:center; gap:12px;">
+        <sc-for list="{{ pills }}" as="p" hint-placeholder-count="4">
+          <div style="{{ p.style }}">
+            <span>{{ p.label }}</span>
+            <sc-if value="{{ p.hasCount }}" hint-placeholder-val="{{ true }}">
+              <span style="{{ p.badgeStyle }}">{{ p.count }}</span>
+            </sc-if>
+          </div>
+        </sc-for>
+      </div>
+      <div style="display:flex; align-items:center; gap:7px; background:var(--secondary,#3B4A5E); color:#fff; padding:9px 15px; border-radius:6px; font-weight:600; font-size:13px; letter-spacing:.02em; cursor:pointer;">
+        <svg data-mdi="help-circle-outline" width="16" height="16" viewBox="0 0 24 24"><path fill="currentColor" d="M11 18h2v-2h-2zm1-16A10 10 0 0 0 2 12a10 10 0 0 0 10 10a10 10 0 0 0 10-10A10 10 0 0 0 12 2m0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8s8 3.59 8 8s-3.59 8-8 8m0-14a4 4 0 0 0-4 4h2a2 2 0 0 1 2-2a2 2 0 0 1 2 2c0 2-3 1.75-3 5h2c0-2.25 3-2.5 3-5a4 4 0 0 0-4-4"/></svg>
+        HELP CENTRE
+      </div>
+      <div style="width:38px; height:38px; border-radius:99px; border:1px solid var(--border,#DCE6F3); display:flex; align-items:center; justify-content:center; color:#ED1C24; margin-left:4px;">
+        <svg data-mdi="star" width="20" height="20" viewBox="0 0 24 24"><path fill="currentColor" d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.62L12 2L9.19 8.62L2 9.24l5.45 4.73L5.82 21z"/></svg>
+      </div>
+      <div style="line-height:1.1; text-align:left;">
+        <div style="font-weight:700; font-size:15px; color:var(--text-primary,#17212E);">{{ account.id }}</div>
+        <div style="font-size:12px; color:var(--text-secondary,#64748B);">{{ account.name }}</div>
+      </div>
+      <div style="color:var(--text-secondary,#64748B); padding:0 4px; cursor:pointer; display:flex; align-items:center;"><svg data-mdi="dots-vertical" width="20" height="20" viewBox="0 0 24 24"><path fill="currentColor" d="M12 16a2 2 0 0 1 2 2a2 2 0 0 1-2 2a2 2 0 0 1-2-2a2 2 0 0 1 2-2m0-6a2 2 0 0 1 2 2a2 2 0 0 1-2 2a2 2 0 0 1-2-2a2 2 0 0 1 2-2m0-6a2 2 0 0 1 2 2a2 2 0 0 1-2 2a2 2 0 0 1-2-2a2 2 0 0 1 2-2"/></svg></div>
+    </header>
+
+    <!-- ============ CONTENT ============ -->
+    <main class="ji-scroll" style="grid-column:2; grid-row:2; background:var(--background,#F4F7FB); overflow:auto; padding:24px;">
+
+      <!-- ===== PHONE USERS ===== -->
+      <sc-if value="{{ isUsers }}" hint-placeholder-val="{{ true }}">
+        <div style="background:var(--surface,#fff); border:1px solid var(--border,#DCE6F3); border-radius:10px; box-shadow:0 1px 2px rgba(15,23,42,.05); overflow:hidden;">
+          <div style="display:flex; align-items:center; gap:18px; padding:20px 22px;">
+            <h1 style="margin:0; font-size:22px; font-weight:700; color:var(--text-primary,#17212E); font-family:'Saira',sans-serif;">Phone Users</h1>
+            <div style="flex:1; max-width:460px; display:flex; align-items:center; gap:9px; background:var(--surface,#fff); border:1px solid var(--border,#DCE6F3); border-radius:8px; padding:10px 14px; color:var(--text-secondary,#64748B);">
+              <svg data-mdi="magnify" width="17" height="17" viewBox="0 0 24 24"><path fill="currentColor" d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5l-1.5 1.5l-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16A6.5 6.5 0 0 1 3 9.5A6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14S14 12 14 9.5S12 5 9.5 5"/></svg>
+              <span style="font-size:14px;">Search by Extension or Display Name</span>
+            </div>
+            <div style="margin-left:auto; display:flex; gap:10px;">
+              <div style="background:var(--accent,#6FA0FF); color:#fff; padding:10px 18px; border-radius:7px; font-weight:600; font-size:13px; cursor:pointer;">Download</div>
+              <div style="position:relative; background:var(--primary,#2E6BE6); color:#fff; padding:10px 18px; border-radius:7px; font-weight:600; font-size:13px; cursor:pointer;">Create Phone User
+                <span style="position:absolute; top:-8px; right:-8px; background:var(--success,#159B67); color:#fff; font-size:11px; font-weight:700; border-radius:99px; padding:1px 7px;">16</span>
+              </div>
+            </div>
+          </div>
+          <div style="display:grid; grid-template-columns:1.6fr .7fr .8fr 1.9fr .7fr 1.9fr .9fr .9fr; padding:12px 22px; border-top:1px solid var(--divider,#EAEFF6); background:var(--surface-variant,#EAF1FD); font-size:12px; font-weight:700; letter-spacing:.03em; text-transform:uppercase; color:var(--on-surface-variant,#475569);">
+            <div>Display Name</div><div>Extension</div><div>Features</div><div>Email</div><div>Prefix</div><div>Phone Number</div><div>Created</div><div>Updated</div>
+          </div>
+          <sc-for list="{{ users }}" as="u" hint-placeholder-count="10">
+            <div style="{{ u.rowStyle }}">
+              <div style="display:flex; align-items:center; gap:8px; color:var(--text-primary,#17212E); font-weight:600;">
+                <svg data-mdi="cellphone" width="16" height="16" viewBox="0 0 24 24" style="color:var(--text-secondary,#64748B)"><path fill="currentColor" d="M17 19H7V5h10m0-4H7c-1.11 0-2 .89-2 2v18a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V3a2 2 0 0 0-2-2"/></svg>
+                {{ u.name }}
+              </div>
+              <div style="color:var(--text-secondary,#64748B);">{{ u.ext }}</div>
+              <div style="display:flex; gap:6px; color:var(--success,#159B67);">
+                <sc-for list="{{ u.feat }}" as="f" hint-placeholder-count="0"><span style="width:15px; height:15px; display:block; border-radius:3px; background:color-mix(in srgb, var(--success) 55%, transparent);"></span></sc-for>
+              </div>
+              <div style="color:var(--text-secondary,#64748B); font-size:13px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap;">{{ u.email }}</div>
+              <div style="color:var(--text-secondary,#64748B);">{{ u.prefix }}</div>
+              <div><span style="display:inline-block; background:var(--surface-variant,#EAF1FD); color:var(--text-primary,#17212E); padding:4px 12px; border-radius:99px; font-size:12.5px;">{{ u.number }}</span></div>
+              <div style="color:var(--text-secondary,#64748B); font-size:13px;">{{ u.created }}</div>
+              <div style="color:var(--text-secondary,#64748B); font-size:13px;">{{ u.updated }}</div>
+            </div>
+          </sc-for>
+        </div>
+      </sc-if>
+
+      <!-- ===== CALLS & SMS ===== -->
+      <sc-if value="{{ isCalls }}" hint-placeholder-val="{{ true }}">
+        <div style="background:var(--surface,#fff); border:1px solid var(--border,#DCE6F3); border-radius:10px; box-shadow:0 1px 2px rgba(15,23,42,.05); overflow:hidden;">
+          <div style="display:flex; align-items:center; gap:14px; padding:20px 22px;">
+            <h1 style="margin:0; font-size:21px; font-weight:700; color:var(--text-primary,#17212E); font-family:'Saira',sans-serif;">Total Calls and SMS</h1>
+            <div style="width:26px; height:26px; border-radius:99px; background:var(--primary,#2E6BE6); display:flex; align-items:center; justify-content:center;">
+              <svg data-mdi="filter" width="14" height="14" viewBox="0 0 24 24" style="color:#fff"><path fill="currentColor" d="M14 12v7.88c.04.3-.06.62-.29.83a.996.996 0 0 1-1.41 0l-2.01-2.01a.99.99 0 0 1-.29-.83V12h-.03L4.21 4.62a1 1 0 0 1 .17-1.4c.19-.14.4-.22.62-.22h14c.22 0 .43.08.62.22a1 1 0 0 1 .17 1.4L14.03 12z"/></svg>
+            </div>
+            <div style="margin-left:auto; display:flex; align-items:center; gap:8px;">
+              <div style="width:34px; height:34px; border-radius:7px; border:1px solid var(--border,#DCE6F3); display:flex; align-items:center; justify-content:center; color:var(--primary,#2E6BE6);"><svg data-mdi="filter-variant" width="17" height="17" viewBox="0 0 24 24"><path fill="currentColor" d="M6 13h12v-2H6M3 6v2h18V6M10 18h4v-2h-4z"/></svg></div>
+              <div style="width:34px; height:34px; border-radius:7px; border:1px solid var(--border,#DCE6F3); display:flex; align-items:center; justify-content:center; color:var(--primary,#2E6BE6);"><svg data-mdi="refresh" width="17" height="17" viewBox="0 0 24 24"><path fill="currentColor" d="M17.65 6.35A7.96 7.96 0 0 0 12 4a8 8 0 0 0-8 8a8 8 0 0 0 8 8c3.73 0 6.84-2.55 7.73-6h-2.08A5.99 5.99 0 0 1 12 18a6 6 0 0 1-6-6a6 6 0 0 1 6-6c1.66 0 3.14.69 4.22 1.78L13 11h7V4z"/></svg></div>
+              <div style="background:var(--primary,#2E6BE6); color:#fff; padding:9px 18px; border-radius:7px; font-weight:600; font-size:13px; display:flex; align-items:center; gap:8px;">
+                <svg data-mdi="calendar-blank" width="15" height="15" viewBox="0 0 24 24"><path fill="currentColor" d="M19 19H5V8h14m-3-7v2H8V1H6v2H5c-1.11 0-2 .89-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2h-1V1"/></svg>
+                LAST 7 DAYS
+              </div>
+            </div>
+          </div>
+          <div style="display:grid; grid-template-columns:1fr 1fr .9fr 1.2fr 1.7fr 1.3fr 1fr 1.2fr; padding:12px 22px; border-top:1px solid var(--divider,#EAEFF6); background:var(--surface-variant,#EAF1FD); font-size:12px; font-weight:700; letter-spacing:.03em; text-transform:uppercase; color:var(--on-surface-variant,#475569);">
+            <div>Audio</div><div>Date</div><div>Duration</div><div>Jet Number</div><div>Service Name</div><div>Customer</div><div>Status</div><div>Phone User</div>
+          </div>
+          <sc-for list="{{ calls }}" as="c" hint-placeholder-count="10">
+            <div style="{{ c.rowStyle }}">
+              <div>
+                <sc-if value="{{ c.hasAudio }}" hint-placeholder-val="{{ true }}"><span style="{{ c.audioStyle }}"><svg data-mdi="play" width="11" height="11" viewBox="0 0 24 24"><path fill="currentColor" d="M8 5.14v14l11-7z"/></svg>{{ c.audioLabel }}</span></sc-if>
+              </div>
+              <div style="color:var(--text-secondary,#64748B); font-size:13px;">{{ c.date }}</div>
+              <div style="color:var(--text-secondary,#64748B); font-size:13px;">{{ c.dur }}</div>
+              <div style="color:var(--text-primary,#17212E); font-size:13px; font-weight:600;">{{ c.jet }}</div>
+              <div style="color:var(--text-secondary,#64748B); font-size:13px;">{{ c.service }}</div>
+              <div style="color:var(--text-secondary,#64748B); font-size:13px;">{{ c.cust }}</div>
+              <div><span style="{{ c.statusStyle }}">{{ c.status }}</span></div>
+              <div style="color:var(--text-secondary,#64748B); font-size:13px;">{{ c.user }}</div>
+            </div>
+          </sc-for>
+          <div style="display:flex; align-items:center; justify-content:flex-end; gap:16px; padding:16px 22px; border-top:1px solid var(--divider,#EAEFF6); color:var(--text-secondary,#64748B); font-size:13px;">
+            <span>Items per page: 25</span>
+            <span>1–25 of 43</span>
+            <span style="display:inline-flex; align-items:center; gap:2px;"><svg data-mdi="chevron-left" width="18" height="18" viewBox="0 0 24 24"><path fill="currentColor" d="M15.41 16.58L10.83 12l4.58-4.59L14 6l-6 6l6 6z"/></svg><svg data-mdi="chevron-right" width="18" height="18" viewBox="0 0 24 24"><path fill="currentColor" d="M8.59 16.58L13.17 12L8.59 7.41L10 6l6 6l-6 6z"/></svg></span>
+          </div>
+        </div>
+      </sc-if>
+
+      <!-- ===== CALL FLOW BUILDER ===== -->
+      <sc-if value="{{ isFlow }}" hint-placeholder-val="{{ true }}">
+        <div style="background:var(--surface,#fff); border:1px solid var(--border,#DCE6F3); border-radius:10px; box-shadow:0 1px 2px rgba(15,23,42,.05); overflow:hidden;">
+          <div style="display:flex; align-items:center; gap:14px; padding:16px 20px; border-bottom:1px solid var(--divider,#EAEFF6);">
+            <div style="flex:1; max-width:420px; background:var(--surface,#fff); border:1px solid var(--border,#DCE6F3); border-radius:8px; padding:10px 14px; font-size:14px; font-weight:600; color:var(--text-primary,#17212E);">Ben B desk</div>
+            <span style="background:var(--surface-variant,#EAF1FD); color:var(--on-surface-variant,#475569); padding:5px 12px; border-radius:99px; font-size:12px; font-weight:600;">v13</span>
+            <div style="margin-left:auto; display:flex; align-items:center; gap:10px;">
+              <div style="background:var(--info,#0FB0C0); color:#fff; padding:10px 30px; border-radius:7px; font-weight:700; font-size:13px;">100 %</div>
+              <div style="background:var(--warning,#E28A2E); color:#fff; padding:10px 20px; border-radius:7px; font-weight:700; font-size:13px;">CLOSE</div>
+              <div style="background:var(--surface-variant,#EAF1FD); color:var(--on-surface-variant,#475569); padding:10px 18px; border-radius:7px; font-weight:700; font-size:13px;">DRAFT</div>
+              <div style="background:var(--primary,#2E6BE6); color:#fff; padding:10px 18px; border-radius:7px; font-weight:700; font-size:13px;">AVAILABLE</div>
+            </div>
+          </div>
+          <div class="ji-scroll" style="position:relative; height:600px; background:var(--background,#F4F7FB); background-image:radial-gradient(var(--divider,#EAEFF6) 1.2px, transparent 1.2px); background-size:22px 22px; overflow:auto;">
+            <div style="position:absolute; top:22px; left:22px; width:44px; height:44px; border-radius:99px; background:var(--primary,#2E6BE6); color:#fff; display:flex; align-items:center; justify-content:center; box-shadow:0 4px 12px rgba(15,23,42,.15);"><svg data-mdi="plus" width="22" height="22" viewBox="0 0 24 24"><path fill="currentColor" d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6z"/></svg></div>
+            <div style="position:relative; width:760px; height:660px; margin:0 auto;">
+              <svg width="760" height="660" style="position:absolute; inset:0; pointer-events:none;">
+                <defs><marker id="ah" markerWidth="9" markerHeight="9" refX="6" refY="4.5" orient="auto"><path d="M0 0L9 4.5L0 9z" fill="var(--accent,#6FA0FF)"/></marker></defs>
+                <path d="M385 150 L378 292" stroke="var(--accent,#6FA0FF)" stroke-width="2.5" fill="none" marker-end="url(#ah)"/>
+                <path d="M322 432 L322 640" stroke="var(--accent,#6FA0FF)" stroke-width="2.5" fill="none"/>
+                <path d="M378 432 Q470 470 556 512" stroke="var(--accent,#6FA0FF)" stroke-width="2.5" fill="none" marker-end="url(#ah)"/>
+                <path d="M434 432 Q500 475 556 512" stroke="var(--accent,#6FA0FF)" stroke-width="2.5" fill="none" marker-end="url(#ah)"/>
+              </svg>
+              <!-- Start node -->
+              <div style="position:absolute; left:300px; top:20px; width:170px; background:var(--surface,#fff); border:1px solid var(--border,#DCE6F3); border-radius:6px; box-shadow:0 2px 8px rgba(15,23,42,.08);">
+                <div style="display:flex; align-items:center; justify-content:space-between; padding:9px 12px; border-bottom:1px solid var(--divider,#EAEFF6);"><svg data-mdi="play-circle-outline" width="16" height="16" viewBox="0 0 24 24" style="color:var(--text-primary,#17212E)"><path fill="currentColor" d="M12 20c-4.41 0-8-3.59-8-8s3.59-8 8-8s8 3.59 8 8s-3.59 8-8 8m0-18A10 10 0 0 0 2 12a10 10 0 0 0 10 10a10 10 0 0 0 10-10A10 10 0 0 0 12 2m-2 14.5l6-4.5l-6-4.5z"/></svg><span style="font-weight:700; font-size:13px; color:var(--text-primary,#17212E);">Start</span></div>
+                <div style="display:flex; flex-direction:column; align-items:center; padding:16px 0 10px;"><svg data-mdi="microphone" width="20" height="20" viewBox="0 0 24 24" style="color:var(--text-primary,#17212E)"><path fill="currentColor" d="M12 2a3 3 0 0 1 3 3v6a3 3 0 0 1-3 3a3 3 0 0 1-3-3V5a3 3 0 0 1 3-3m7 9c0 3.53-2.61 6.44-6 6.93V21h-2v-3.07c-3.39-.49-6-3.4-6-6.93h2a5 5 0 0 0 5 5a5 5 0 0 0 5-5z"/></svg><span style="font-size:10px; letter-spacing:.08em; color:var(--text-secondary,#64748B); margin-top:8px;">CALL</span></div>
+              </div>
+              <div style="position:absolute; left:373px; top:140px; width:16px; height:16px; border-radius:99px; background:var(--warning,#E28A2E); border:2px solid var(--surface,#fff);"></div>
+              <!-- Dial node -->
+              <div style="position:absolute; left:302px; top:300px; width:152px; background:var(--surface,#fff); border:1px solid var(--border,#DCE6F3); border-radius:6px; box-shadow:0 2px 8px rgba(15,23,42,.08);">
+                <div style="display:flex; align-items:center; justify-content:space-between; padding:9px 12px; border-bottom:1px solid var(--divider,#EAEFF6);"><svg data-mdi="phone" width="15" height="15" viewBox="0 0 24 24" style="color:var(--text-primary,#17212E)"><path fill="currentColor" d="M6.62 10.79c1.44 2.83 3.76 5.15 6.59 6.59l2.2-2.2c.28-.28.67-.36 1.02-.25c1.12.37 2.32.57 3.57.57a1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.25.2 2.45.57 3.57c.11.35.03.74-.25 1.02z"/></svg><span style="font-weight:700; font-size:13px; color:var(--text-primary,#17212E);">Dial</span></div>
+                <div style="display:flex; height:78px;">
+                  <div style="flex:1; display:flex; align-items:flex-end; justify-content:center; border-right:1px solid var(--divider,#EAEFF6); padding-bottom:6px;"><span style="writing-mode:vertical-rl; transform:rotate(180deg); font-size:9px; letter-spacing:.06em; color:var(--text-secondary,#64748B);">ANSWERED</span></div>
+                  <div style="flex:1; display:flex; align-items:flex-end; justify-content:center; border-right:1px solid var(--divider,#EAEFF6); padding-bottom:6px;"><span style="writing-mode:vertical-rl; transform:rotate(180deg); font-size:9px; letter-spacing:.06em; color:var(--text-secondary,#64748B);">BUSY</span></div>
+                  <div style="flex:1; display:flex; align-items:flex-end; justify-content:center; padding-bottom:6px;"><span style="writing-mode:vertical-rl; transform:rotate(180deg); font-size:9px; letter-spacing:.06em; color:var(--text-secondary,#64748B);">UNANSWERED</span></div>
+                </div>
+              </div>
+              <div style="position:absolute; left:314px; top:424px; width:15px; height:15px; border-radius:99px; background:var(--success,#159B67); border:2px solid var(--surface,#fff);"></div>
+              <div style="position:absolute; left:370px; top:424px; width:15px; height:15px; border-radius:99px; background:color-mix(in srgb, var(--error) 45%, white); border:2px solid var(--surface,#fff);"></div>
+              <div style="position:absolute; left:426px; top:424px; width:15px; height:15px; border-radius:99px; background:var(--error,#E23A3F); border:2px solid var(--surface,#fff);"></div>
+              <!-- Voicemail node -->
+              <div style="position:absolute; left:470px; top:520px; width:180px; background:var(--surface,#fff); border:1px solid var(--border,#DCE6F3); border-radius:6px; box-shadow:0 2px 8px rgba(15,23,42,.08);">
+                <div style="display:flex; align-items:center; gap:8px; padding:9px 12px; border-bottom:1px solid var(--divider,#EAEFF6);"><svg data-mdi="voicemail" width="16" height="16" viewBox="0 0 24 24" style="color:var(--text-primary,#17212E)"><path fill="currentColor" d="M18.5 15a3.5 3.5 0 0 1-3.5-3.5A3.5 3.5 0 0 1 18.5 8a3.5 3.5 0 0 1 3.5 3.5a3.5 3.5 0 0 1-3.5 3.5m-13 0A3.5 3.5 0 0 1 2 11.5A3.5 3.5 0 0 1 5.5 8A3.5 3.5 0 0 1 9 11.5A3.5 3.5 0 0 1 5.5 15m13-9a5.5 5.5 0 0 0-5.5 5.5c0 1.33.47 2.55 1.26 3.5H9.74c.79-.95 1.26-2.17 1.26-3.5A5.5 5.5 0 0 0 5.5 6A5.5 5.5 0 0 0 0 11.5A5.5 5.5 0 0 0 5.5 17h13a5.5 5.5 0 0 0 5.5-5.5A5.5 5.5 0 0 0 18.5 6"/></svg><span style="font-weight:700; font-size:12.5px; line-height:1.2; color:var(--text-primary,#17212E);">Voicemail<br>Send Email</span></div>
+                <div style="height:52px;"></div>
+              </div>
+              <div style="position:absolute; left:552px; top:508px; width:16px; height:16px; border-radius:99px; background:var(--warning,#E28A2E); border:2px solid var(--surface,#fff);"></div>
+            </div>
+          </div>
+        </div>
+      </sc-if>
+
+      <!-- ===== SIGNUP MANAGEMENT ===== -->
+      <sc-if value="{{ isSignup }}" hint-placeholder-val="{{ true }}">
+        <div style="background:var(--surface,#fff); border:1px solid var(--border,#DCE6F3); border-radius:10px; box-shadow:0 1px 2px rgba(15,23,42,.05); overflow:hidden;">
+          <div style="display:flex; align-items:center; padding:20px 22px;">
+            <h1 style="margin:0; font-size:22px; font-weight:700; color:var(--text-primary,#17212E); font-family:'Saira',sans-serif;">Signup Management</h1>
+            <span style="margin-left:auto; background:var(--success,#159B67); color:#fff; padding:6px 14px; border-radius:99px; font-size:12.5px; font-weight:600;">ID Verifications: 15 / 150</span>
+          </div>
+          <div style="display:grid; grid-template-columns:1.1fr 1.1fr 1fr .9fr 1.2fr 1.4fr .6fr .8fr .8fr .7fr .8fr .9fr; padding:12px 22px; border-top:1px solid var(--divider,#EAEFF6); background:var(--surface-variant,#EAF1FD); font-size:11.5px; font-weight:700; letter-spacing:.02em; text-transform:uppercase; color:var(--on-surface-variant,#475569);">
+            <div>Created</div><div>Last Updated</div><div>Trading Name</div><div>Contact</div><div>Mobile</div><div>E-Mail</div><div>Post</div><div>Route</div><div>Plan</div><div>Numbers</div><div>Step</div><div>Action</div>
+          </div>
+          <sc-for list="{{ signups }}" as="g" hint-placeholder-count="2">
+            <div style="{{ g.rowStyle }}">
+              <div style="color:var(--text-secondary,#64748B); font-size:12.5px;">{{ g.created }}</div>
+              <div style="color:var(--text-secondary,#64748B); font-size:12.5px;">{{ g.updated }}</div>
+              <div style="color:var(--text-primary,#17212E); font-size:13px; font-weight:600;">{{ g.trading }}</div>
+              <div style="color:var(--text-secondary,#64748B); font-size:13px;">{{ g.contact }}</div>
+              <div style="color:var(--text-secondary,#64748B); font-size:13px;">{{ g.mobile }}</div>
+              <div style="color:var(--text-secondary,#64748B); font-size:13px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap;">{{ g.email }}</div>
+              <div style="color:var(--text-secondary,#64748B); font-size:13px;">{{ g.post }}</div>
+              <div style="color:var(--text-secondary,#64748B); font-size:13px;">{{ g.route }}</div>
+              <div style="color:var(--text-secondary,#64748B); font-size:13px;">{{ g.plan }}</div>
+              <div><span style="display:inline-flex; align-items:center; justify-content:center; width:24px; height:24px; border-radius:99px; background:var(--success,#159B67); color:#fff; font-size:12px; font-weight:700;">1</span></div>
+              <div><span style="display:inline-block; background:var(--primary,#2E6BE6); color:#fff; padding:5px 12px; border-radius:99px; font-size:12px; font-weight:600;">3 — Address</span></div>
+              <div style="display:flex; gap:8px; color:var(--text-secondary,#64748B);">
+                <svg data-mdi="pencil" width="16" height="16" viewBox="0 0 24 24" style="color:var(--warning,#E28A2E)"><path fill="currentColor" d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83l3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75z"/></svg>
+                <svg data-mdi="check" width="16" height="16" viewBox="0 0 24 24" style="color:var(--success,#159B67)"><path fill="currentColor" d="M21 7L9 19l-5.5-5.5l1.41-1.41L9 16.17L19.59 5.59z"/></svg>
+                <svg data-mdi="delete" width="16" height="16" viewBox="0 0 24 24" style="color:var(--error,#E23A3F)"><path fill="currentColor" d="M19 4h-3.5l-1-1h-5l-1 1H5v2h14M6 19a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V7H6z"/></svg>
+              </div>
+            </div>
+          </sc-for>
+        </div>
+      </sc-if>
+
+    </main>
+  </div>
+
+  <!-- ============ FLOATING PREVIEW CONTROLS ============ -->
+  <div style="position:fixed; left:50%; bottom:22px; transform:translateX(-50%); display:flex; align-items:center; gap:10px; background:#0B0B0C; color:#fff; padding:9px 12px; border-radius:14px; box-shadow:0 16px 40px rgba(0,0,0,.32); z-index:50; font-family:'Barlow',sans-serif;">
+    <div style="display:flex; gap:3px; background:rgba(255,255,255,.08); padding:3px; border-radius:9px;">
+      <sc-for list="{{ screenTabs }}" as="t" hint-placeholder-count="4">
+        <div onClick="{{ t.onClick }}" style="{{ t.style }}">{{ t.label }}</div>
+      </sc-for>
+    </div>
+    <div style="width:1px; height:22px; background:rgba(255,255,255,.14);"></div>
+    <div style="display:flex; gap:3px; background:rgba(255,255,255,.08); padding:3px; border-radius:9px;">
+      <div onClick="{{ setLight }}" style="{{ lightStyle }}">Light</div>
+      <div onClick="{{ setDark }}" style="{{ darkStyle }}">Dark</div>
+    </div>
+    <div style="width:1px; height:22px; background:rgba(255,255,255,.14);"></div>
+    <div style="display:flex; gap:3px; background:rgba(255,255,255,.08); padding:3px; border-radius:9px;">
+      <div onClick="{{ setBlue }}" style="{{ blueStyle }}"><span style="width:11px;height:11px;border-radius:99px;background:#2E6BE6;display:inline-block;"></span>Blue</div>
+      <div onClick="{{ setRed }}" style="{{ redStyle }}"><span style="width:11px;height:11px;border-radius:99px;background:#ED1C24;display:inline-block;"></span>Red</div>
+    </div>
+    <div style="width:1px; height:22px; background:rgba(255,255,255,.14);"></div>
+    <div onClick="{{ toggleTokens }}" style="padding:7px 15px; border-radius:8px; font-size:13px; font-weight:600; cursor:pointer; background:rgba(255,255,255,.12);">Tokens</div>
+  </div>
+
+  <!-- ============ TOKEN PANEL ============ -->
+  <sc-if value="{{ showTokens }}" hint-placeholder-val="{{ false }}">
+    <div onClick="{{ toggleTokens }}" style="position:fixed; inset:0; background:rgba(5,5,6,.45); z-index:60;"></div>
+    <div class="ji-scroll" style="position:fixed; top:0; right:0; height:100vh; width:440px; background:#fff; box-shadow:-16px 0 40px rgba(0,0,0,.2); z-index:61; overflow:auto; padding:26px; font-family:'Barlow',sans-serif;">
+      <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:6px;">
+        <h2 style="margin:0; font-size:19px; font-weight:700; color:#17212E; font-family:'Saira',sans-serif;">Theme token values</h2>
+        <div onClick="{{ toggleTokens }}" style="cursor:pointer; color:#64748B; display:flex; align-items:center;"><svg data-mdi="close" width="18" height="18" viewBox="0 0 24 24"><path fill="currentColor" d="M19 6.41L17.59 5L12 10.59L6.41 5L5 6.41L10.59 12L5 17.59L6.41 19L12 13.41L17.59 19L19 17.59L13.41 12z"/></svg></div>
+      </div>
+      <p style="margin:0 0 18px; font-size:13px; color:#64748B; line-height:1.5;">Showing the <strong style="color:#17212E;">{{ accentLabel }}</strong> accent. Paste these hexes straight into your <code style="background:#EEF0F3; padding:1px 5px; border-radius:4px;">colors</code> and <code style="background:#EEF0F3; padding:1px 5px; border-radius:4px;">darkColors</code> objects.</p>
+      <div style="display:grid; grid-template-columns:1.4fr 1fr 1fr; gap:0; font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:.04em; color:#94A3B8; padding:0 0 8px; border-bottom:1px solid #E5EAF2;">
+        <div>Token</div><div>Light</div><div>Dark</div>
+      </div>
+      <sc-for list="{{ tokenRows }}" as="r" hint-placeholder-count="15">
+        <div style="display:grid; grid-template-columns:1.4fr 1fr 1fr; gap:0; align-items:center; padding:9px 0; border-bottom:1px solid #F1F4F9;">
+          <div style="font-size:12.5px; font-family:'JetBrains Mono',monospace; color:#2A2A2E;">{{ r.name }}</div>
+          <div style="display:flex; align-items:center; gap:7px;"><span style="{{ r.lightSwatch }}"></span><span style="font-size:11.5px; font-family:'JetBrains Mono',monospace; color:#64748B;">{{ r.light }}</span></div>
+          <div style="display:flex; align-items:center; gap:7px;"><span style="{{ r.darkSwatch }}"></span><span style="font-size:11.5px; font-family:'JetBrains Mono',monospace; color:#64748B;">{{ r.dark }}</span></div>
+        </div>
+      </sc-for>
+    </div>
+  </sc-if>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:&quot;100%&quot;,&quot;height&quot;:&quot;100%&quot;},&quot;theme&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;light&quot;,&quot;dark&quot;],&quot;default&quot;:&quot;light&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Preview&quot;},&quot;accent&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;blue&quot;,&quot;red&quot;],&quot;default&quot;:&quot;blue&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Preview&quot;}}">
+class Component extends DCLogic {
+  state = {
+    theme: this.props.theme || 'light',
+    accent: this.props.accent || 'blue',
+    screen: 'users',
+    showTokens: false,
+  };
+
+  pal(theme, accent) {
+    if (theme === 'dark') {
+      return {
+        '--primary': accent === 'red' ? '#FF4D57' : '#4C8DFF',
+        '--secondary': '#5D92F4',
+        '--accent': accent === 'red' ? '#FF8A90' : '#8FB6FF',
+        '--error': accent === 'red' ? '#FF7A7E' : '#F0555A',
+        '--info': '#22C7D6',
+        '--success': '#35B37E',
+        '--warning': '#F2A65A',
+        '--background': '#141C28',
+        '--surface': '#1E2937',
+        '--surface-variant': '#2A3543',
+        '--on-surface-variant': '#C6D2E0',
+        '--text-primary': '#EDF1F6',
+        '--text-secondary': '#8E9CB0',
+        '--border': '#303C4B',
+        '--divider': '#28323F',
+      };
+    }
+    return {
+      '--primary': accent === 'red' ? '#D81E27' : '#2E6BE6',
+      '--secondary': '#3B4A5E',
+      '--accent': accent === 'red' ? '#F0666B' : '#6FA0FF',
+      '--error': accent === 'red' ? '#A4161B' : '#E23A3F',
+      '--info': '#0FB0C0',
+      '--success': '#159B67',
+      '--warning': '#E28A2E',
+      '--background': '#F4F7FB',
+      '--surface': '#FFFFFF',
+      '--surface-variant': '#EAF1FD',
+      '--on-surface-variant': '#475569',
+      '--text-primary': '#17212E',
+      '--text-secondary': '#64748B',
+      '--border': '#DCE6F3',
+      '--divider': '#EAEFF6',
+    };
+  }
+
+  renderVals() {
+    const { theme, accent, screen, showTokens } = this.state;
+    const p = this.pal(theme, accent);
+    const paletteStyle = {
+      ...p,
+      height: '100%',
+      display: 'grid',
+      gridTemplateColumns: '56px 1fr',
+      gridTemplateRows: '64px 1fr',
+      background: 'var(--background)',
+    };
+
+    const sideIcons = ['home','user','dollar','device','chart','bolt','gauge','tools'];
+    const sidebar = sideIcons.map((ic, i) => ({
+      name: ic, icon: ic,
+      style: {
+        width: '40px', height: '40px', borderRadius: '9px', display: 'flex',
+        alignItems: 'center', justifyContent: 'center', cursor: 'pointer',
+        color: i === 3 ? 'var(--primary)' : 'var(--text-secondary)',
+        background: i === 3 ? 'color-mix(in srgb, var(--primary) 12%, transparent)' : 'transparent',
+      },
+    }));
+
+    const pillDefs = [
+      { label: 'SMS', tok: '--success', count: null },
+      { label: 'Online Status', tok: '--primary', count: 3 },
+      { label: 'Voicemail', tok: '--warning', count: 15 },
+      { label: 'Missed Call', tok: '--error', count: 0 },
+    ];
+    const pills = pillDefs.map(d => ({
+      label: d.label, count: d.count, hasCount: d.count !== null,
+      style: {
+        display: 'flex', alignItems: 'center', gap: '8px',
+        background: `color-mix(in srgb, var(${d.tok}) 16%, transparent)`,
+        color: `var(${d.tok})`,
+        padding: '8px 15px', borderRadius: '99px', fontSize: '13px', fontWeight: 600, cursor: 'pointer',
+        whiteSpace: 'nowrap',
+      },
+      badgeStyle: {
+        background: `var(${d.tok})`, color: '#fff', fontSize: '11px', fontWeight: 700,
+        minWidth: '18px', height: '18px', borderRadius: '99px', display: 'flex',
+        alignItems: 'center', justifyContent: 'center', padding: '0 5px',
+      },
+    }));
+
+    const rowStyle = (i) => ({
+      display: 'grid',
+      gridTemplateColumns: '1.6fr .7fr .8fr 1.9fr .7fr 1.9fr .9fr .9fr',
+      padding: '13px 22px', alignItems: 'center', fontSize: '13.5px',
+      borderTop: '1px solid var(--divider)',
+      background: i % 2 === 1 ? 'color-mix(in srgb, var(--surface-variant) 45%, var(--surface))' : 'var(--surface)',
+    });
+    const usersRaw = [
+      ['Matt Webphone','100','matthew@jetinteractive.com.au','0480 092 095 — Sales Mobile #2','2025-09-05','2025-11-21',0],
+      ['Matt SF Demo','101','matthew.cahill+sfdemo@jetinteractive.com.au','0480 092 095 — Sales Mobile #2','2025-09-08','2025-11-21',0],
+      ['Pete Test','102','peter.graham.008@gmail.com','0480 015 155 — 2FA','2025-02-14','2025-11-14',3],
+      ['Glenn Webphone','103','glenn.tyler@jetinteractive.com.au','0481 611 538 — CS Mobile #1','2025-06-12','—',0],
+      ['Jackson SF','104','jackson.murphy+sf@jetinteractive.com.au','0483 914 114 — Matt June','2025-12-11','—',0],
+      ['Jackson Murphy','105','jackson.murphy+mobile@jetinteractive.com.au','0483 916 114 — Direct to Jackson Murphy','2025-09-03','2026-02-02',1],
+      ['Glenn SF Demo','106','glenn.tyler+sfdemo@jetinteractive.com.au','0480 015 538 — Dev Team SMS','2025-09-08','—',0],
+      ['Justin Webphone','107','justin.graham@jetinteractive.com.au','0480 015 155 — 2FA','2025-09-08','2026-04-20',0],
+      ['Bianca','108','','(02) 9146 4614 — Direct to Bianca Local','2025-11-21','2025-12-17',0],
+      ['Grant','109','','0483 913 114 — Direct to Grant Mobile','2025-11-21','2025-12-17',0],
+      ['Daniel Russell','111','daniel.russell@jetinteractive.com.au','0485 862 108 — Direct to Daniel Russell','2026-03-16','2026-03-16',1],
+      ['Ben Bewick','5992','ben.bewick+production@jetinteractive.com.au','(02) 9146 4608 — Ben B Desk','—','2026-04-22',4],
+    ];
+    const users = usersRaw.map((u, i) => ({
+      name: u[0], ext: u[1], email: u[2], number: u[3], created: u[4], updated: u[5], prefix: '02',
+      feat: Array.from({ length: u[6] }), rowStyle: rowStyle(i),
+    }));
+
+    const callRowStyle = (i) => ({
+      display: 'grid',
+      gridTemplateColumns: '1fr 1fr .9fr 1.2fr 1.7fr 1.3fr 1fr 1.2fr',
+      padding: '13px 22px', alignItems: 'center',
+      borderTop: '1px solid var(--divider)',
+      background: i % 2 === 1 ? 'color-mix(in srgb, var(--surface-variant) 45%, var(--surface))' : 'var(--surface)',
+    });
+    const chip = (bg) => ({
+      display: 'inline-flex', alignItems: 'center', gap: '6px', background: bg, color: '#fff',
+      padding: '5px 12px', borderRadius: '99px', fontSize: '12px', fontWeight: 600, whiteSpace: 'nowrap',
+    });
+    const statusChip = (bg) => ({
+      display: 'inline-block', background: bg, color: '#fff', padding: '4px 13px',
+      borderRadius: '99px', fontSize: '12px', fontWeight: 600,
+    });
+    const callsRaw = [
+      ['2026-07-06','00:00:10','0483 916 114','Direct to Jackson Murphy','0489 945 911','Unavailable','bad','Jackson Murphy',null],
+      ['2026-07-03','00:00:08','0488 839 133','Direct to Justin Graham','(07) 2139 5615','Cancelled','bad','Justin Graham','rec'],
+      ['2026-07-02','00:11:19','1300 784 894','Invoice Enquiries','(03) 9003 4100','Answered','ok','Justin Graham','rec'],
+      ['2026-07-02','00:00:18','(02) 9146 4600','Justin\u2019s Phone','(03) 9101 1157','Cancelled','bad','Justin Graham','rec'],
+      ['2026-07-02','00:07:19','0488 811 729','Direct to Matt','0400 044 489','Answered','ok','Matt',null],
+      ['2026-07-02','00:00:20','0483 916 114','Direct to Jackson Murphy','(07) 4596 3354','Answered','ok','Jackson Murphy',null],
+      ['2026-07-02','00:01:25','0483 916 114','Direct to Jackson Murphy','(07) 4596 3354','Answered','ok','Jackson Murphy',null],
+      ['2026-07-02','00:01:57','1300 784 894','Invoice Enquiries','(07) 4596 3354','Unavailable','bad','—','vm'],
+      ['2026-07-02','00:00:53','0488 811 729','Direct to Matt','0400 044 489','Answered','ok','Matt',null],
+      ['2026-07-02','00:00:09','0488 811 729','Direct to Matt','0406 575 601','Cancelled','bad','Matt','rec'],
+      ['2026-07-01','00:00:44','0488 811 729','Direct to Matt','0406 575 601','Answered','ok','Matt',null],
+      ['2026-07-01','00:00:54','0488 811 729','Direct to Matt','0483 921 139','Unanswered','bad','Matt','vm'],
+    ];
+    const calls = callsRaw.map((c, i) => ({
+      date: c[0], dur: c[1], jet: c[2], service: c[3], cust: c[4], status: c[5], user: c[7],
+      rowStyle: callRowStyle(i),
+      statusStyle: statusChip(c[6] === 'ok' ? 'var(--success)' : 'var(--error)'),
+      hasAudio: c[8] !== null,
+      audioLabel: c[8] === 'rec' ? 'Recording' : c[8] === 'vm' ? 'VoiceMail' : '',
+      audioStyle: chip(c[8] === 'rec' ? 'var(--primary)' : 'var(--warning)'),
+    }));
+
+    const signupRowStyle = (i) => ({
+      display: 'grid',
+      gridTemplateColumns: '1.1fr 1.1fr 1fr .9fr 1.2fr 1.4fr .6fr .8fr .8fr .7fr .8fr .9fr',
+      padding: '14px 22px', alignItems: 'center',
+      borderTop: '1px solid var(--divider)',
+      background: i % 2 === 1 ? 'color-mix(in srgb, var(--surface-variant) 45%, var(--surface))' : 'var(--surface)',
+    });
+    const signupsRaw = [
+      ['2026-06-28 00:21','2026-07-02 20:44','Joanne fortune','Jo Fortune','+61406090868','support@joefortune.biz','3075','Cloud Mobile','Calls Included'],
+      ['2026-06-22 16:29','2026-06-22 16:30','HOSTRA PTY LTD','Yihan Wang','+61433660701','cs@ihostra.com','2065','Cloud Mobile','Calls Included'],
+    ];
+    const signups = signupsRaw.map((g, i) => ({
+      created: g[0], updated: g[1], trading: g[2], contact: g[3], mobile: g[4], email: g[5],
+      post: g[6], route: g[7], plan: g[8], rowStyle: signupRowStyle(i),
+    }));
+
+    const tabDefs = [['users','Phone Users'],['calls','Calls & SMS'],['flow','Call Flow'],['signup','Signups']];
+    const tabBase = { padding: '7px 14px', borderRadius: '7px', fontSize: '13px', fontWeight: 600, cursor: 'pointer', whiteSpace: 'nowrap' };
+    const screenTabs = tabDefs.map(([k, label]) => ({
+      label, onClick: () => this.setState({ screen: k }),
+      style: screen === k ? { ...tabBase, background: '#fff', color: '#0B0B0C' } : { ...tabBase, color: 'rgba(255,255,255,.7)' },
+    }));
+
+    const segOn = { padding: '7px 14px', borderRadius: '7px', fontSize: '13px', fontWeight: 600, cursor: 'pointer', background: '#fff', color: '#0B0B0C', display: 'flex', alignItems: 'center', gap: '7px' };
+    const segOff = { padding: '7px 14px', borderRadius: '7px', fontSize: '13px', fontWeight: 600, cursor: 'pointer', color: 'rgba(255,255,255,.7)', display: 'flex', alignItems: 'center', gap: '7px' };
+
+    // token table
+    const names = ['primary','secondary','accent','error','info','success','warning','background','surface','surface-variant','on-surface-variant','text-primary','text-secondary','border','divider'];
+    const light = this.pal('light', accent);
+    const dark = this.pal('dark', accent);
+    const sw = (c) => ({ width: '18px', height: '18px', borderRadius: '5px', border: '1px solid rgba(0,0,0,.12)', background: c, flexShrink: 0 });
+    const tokenRows = names.map(n => ({
+      name: n, light: light['--' + n], dark: dark['--' + n],
+      lightSwatch: sw(light['--' + n]), darkSwatch: sw(dark['--' + n]),
+    }));
+
+    return {
+      paletteStyle, sidebar, pills, users, calls, signups, screenTabs, tokenRows,
+      account: { id: screen === 'signup' ? '3684' : '1104', name: screen === 'signup' ? 'Lendi Group Services Pty Ltd' : 'Jet Interactive' },
+      isUsers: screen === 'users', isCalls: screen === 'calls', isFlow: screen === 'flow', isSignup: screen === 'signup',
+      showTokens, accentLabel: accent === 'red' ? 'Jet Red' : 'Blue',
+      setLight: () => this.setState({ theme: 'light' }),
+      setDark: () => this.setState({ theme: 'dark' }),
+      setBlue: () => this.setState({ accent: 'blue' }),
+      setRed: () => this.setState({ accent: 'red' }),
+      toggleTokens: () => this.setState(s => ({ showTokens: !s.showTokens })),
+      lightStyle: theme === 'light' ? segOn : segOff,
+      darkStyle: theme === 'dark' ? segOn : segOff,
+      blueStyle: accent === 'blue' ? segOn : segOff,
+      redStyle: accent === 'red' ? segOn : segOff,
+    };
+  }
+
+  componentDidMount() { this._paintIcons(); }
+  componentDidUpdate() { this._paintIcons(); }
+  _paintIcons() {
+    const paths = {  // official MDI (Iconify mdi:*) path data
+      home: '<path fill="currentColor" d="M10 20v-6h4v6h5v-8h3L12 3L2 12h3v8z"/>',  // mdi:home
+      user: '<path fill="currentColor" d="M12 4a4 4 0 0 1 4 4a4 4 0 0 1-4 4a4 4 0 0 1-4-4a4 4 0 0 1 4-4m0 10c4.42 0 8 1.79 8 4v2H4v-2c0-2.21 3.58-4 8-4"/>',  // mdi:account
+      dollar: '<path fill="currentColor" d="M7 15h2c0 1.08 1.37 2 3 2s3-.92 3-2c0-1.1-1.04-1.5-3.24-2.03C9.64 12.44 7 11.78 7 9c0-1.79 1.47-3.31 3.5-3.82V3h3v2.18C15.53 5.69 17 7.21 17 9h-2c0-1.08-1.37-2-3-2s-3 .92-3 2c0 1.1 1.04 1.5 3.24 2.03C14.36 11.56 17 12.22 17 15c0 1.79-1.47 3.31-3.5 3.82V21h-3v-2.18C8.47 18.31 7 16.79 7 15"/>',  // mdi:currency-usd
+      device: '<path fill="currentColor" d="M17 19H7V5h10m0-4H7c-1.11 0-2 .89-2 2v18a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V3a2 2 0 0 0-2-2"/>',  // mdi:cellphone
+      chart: '<path fill="currentColor" d="M22 21H2V3h2v16h2v-9h4v9h2V6h4v13h2v-5h4z"/>',  // mdi:chart-bar
+      bolt: '<path fill="currentColor" d="M11 15H6l7-14v8h5l-7 14z"/>',  // mdi:lightning-bolt
+      gauge: '<path fill="currentColor" d="M12 16a3 3 0 0 1-3-3c0-1.12.61-2.1 1.5-2.61l9.71-5.62l-5.53 9.58c-.5.98-1.51 1.65-2.68 1.65m0-13c1.81 0 3.5.5 4.97 1.32l-2.1 1.21C14 5.19 13 5 12 5a8 8 0 0 0-8 8c0 2.21.89 4.21 2.34 5.65h.01c.39.39.39 1.02 0 1.41s-1.03.39-1.42.01A9.97 9.97 0 0 1 2 13A10 10 0 0 1 12 3m10 10c0 2.76-1.12 5.26-2.93 7.07c-.39.38-1.02.38-1.41-.01a.996.996 0 0 1 0-1.41A7.95 7.95 0 0 0 20 13c0-1-.19-2-.54-2.9L20.67 8C21.5 9.5 22 11.18 22 13"/>',  // mdi:speedometer
+      tools: '<path fill="currentColor" d="m21.71 20.29l-1.42 1.42a1 1 0 0 1-1.41 0L7 9.85A3.8 3.8 0 0 1 6 10a4 4 0 0 1-3.78-5.3l2.54 2.54l.53-.53l1.42-1.42l.53-.53L4.7 2.22A4 4 0 0 1 10 6a3.8 3.8 0 0 1-.15 1l11.86 11.88a1 1 0 0 1 0 1.41M2.29 18.88a1 1 0 0 0 0 1.41l1.42 1.42a1 1 0 0 0 1.41 0l5.47-5.46l-2.83-2.83M20 2l-4 2v2l-2.17 2.17l2 2L18 8h2l2-4Z"/>',  // mdi:tools
+    };
+    document.querySelectorAll('[data-icon]').forEach(node => {
+      const key = node.getAttribute('data-icon');
+      if (node.dataset.painted === key) return;
+      node.dataset.painted = key;
+      node.innerHTML = `<svg width="22" height="22" viewBox="0 0 24 24">${paths[key] || ''}</svg>`;
+    });
+  }
+}
+</script>
+</body>
+</html>
