@@ -52,9 +52,9 @@ the two accents. Pick one accent per environment; do not mix.
 | `background` | `#F3F6FB` | **`#F4F7FB`** | `#F4F7FB` |
 | `surface` | `#FFFFFF` | `#FFFFFF` | `#FFFFFF` |
 | `surface-variant` | `#EAF1FD` | `#EAF1FD` | `#EAF1FD` |
-| `on-surface-variant` | `#475569` | **`#374559`** | `#374559` |
+| `on-surface-variant` | `#475569` | **`#2F3D50`** | `#2F3D50` |
 | `text-primary` | `#1F2937` | **`#17212E`** | `#17212E` |
-| `text-secondary` | `#64748B` | **`#425268`** | `#425268` |
+| `text-secondary` | `#64748B` | **`#354356`** | `#354356` |
 | `border` | `#D6E2F5` | **`#DCE6F3`** | `#DCE6F3` |
 | `divider` | `#E5EAF2` | **`#EAEFF6`** | `#EAEFF6` |
 
@@ -72,10 +72,10 @@ const colors = {
   background: '#F4F7FB',
   surface: '#FFFFFF',
   'surface-variant': '#EAF1FD',
-  'on-surface-variant': '#374559',
+  'on-surface-variant': '#2F3D50',
 
   'text-primary': '#17212E',
-  'text-secondary': '#425268',
+  'text-secondary': '#354356',
 
   border: '#DCE6F3',
   divider: '#EAEFF6',
@@ -96,10 +96,10 @@ const colors = {
   background: '#F4F7FB',
   surface: '#FFFFFF',
   'surface-variant': '#EAF1FD',
-  'on-surface-variant': '#374559',
+  'on-surface-variant': '#2F3D50',
 
   'text-primary': '#17212E',
-  'text-secondary': '#425268',
+  'text-secondary': '#354356',
 
   border: '#DCE6F3',
   divider: '#EAEFF6',
@@ -136,8 +136,8 @@ const colors = {
 > that it sat too low, keeping the same slate-blue hue in each case.
 > Dark: `text-secondary` `#8E9CB0` → `#BBC7D6` (5.3:1 → 8.6:1 on `surface`),
 > `on-surface-variant` `#C6D2E0` → `#D9E2EB` (8.1:1 → 9.5:1).
-> Light: `text-secondary` `#64748B` → `#425268` (4.8:1 → 8.0:1 on `surface`),
-> `on-surface-variant` `#475569` → `#374559` (6.7:1 → 8.6:1 on `surface-variant`).
+> Light: `text-secondary` `#64748B` → `#354356` (4.8:1 → 10.1:1 on `surface`),
+> `on-surface-variant` `#475569` → `#2F3D50` (6.7:1 → 9.7:1 on `surface-variant`).
 > `text-primary` was already 13:1+ in both themes and is unchanged.
 
 ### Dark theme — paste-ready (Blue accent)
