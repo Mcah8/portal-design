@@ -55,9 +55,9 @@
       </div>
       <div style="line-height:1.1; text-align:left;">
         <div style="font-weight:700; font-size:15px; color:var(--text-primary,#17212E);">{{ account.id }}</div>
-        <div style="font-size:12px; color:var(--text-secondary,#64748B);">{{ account.name }}</div>
+        <div style="font-size:12px; color:var(--text-secondary,#425268);">{{ account.name }}</div>
       </div>
-      <div style="color:var(--text-secondary,#64748B); padding:0 4px; cursor:pointer; display:flex; align-items:center;"><svg data-mdi="dots-vertical" width="20" height="20" viewBox="0 0 24 24"><path fill="currentColor" d="M12 16a2 2 0 0 1 2 2a2 2 0 0 1-2 2a2 2 0 0 1-2-2a2 2 0 0 1 2-2m0-6a2 2 0 0 1 2 2a2 2 0 0 1-2 2a2 2 0 0 1-2-2a2 2 0 0 1 2-2m0-6a2 2 0 0 1 2 2a2 2 0 0 1-2 2a2 2 0 0 1-2-2a2 2 0 0 1 2-2"/></svg></div>
+      <div style="color:var(--text-secondary,#425268); padding:0 4px; cursor:pointer; display:flex; align-items:center;"><svg data-mdi="dots-vertical" width="20" height="20" viewBox="0 0 24 24"><path fill="currentColor" d="M12 16a2 2 0 0 1 2 2a2 2 0 0 1-2 2a2 2 0 0 1-2-2a2 2 0 0 1 2-2m0-6a2 2 0 0 1 2 2a2 2 0 0 1-2 2a2 2 0 0 1-2-2a2 2 0 0 1 2-2m0-6a2 2 0 0 1 2 2a2 2 0 0 1-2 2a2 2 0 0 1-2-2a2 2 0 0 1 2-2"/></svg></div>
     </header>
 
     <!-- ============ CONTENT ============ -->
@@ -68,7 +68,7 @@
         <div style="background:var(--surface,#fff); border:1px solid var(--border,#DCE6F3); border-radius:10px; box-shadow:0 1px 2px rgba(15,23,42,.05); overflow:hidden;">
           <div style="display:flex; align-items:center; gap:18px; padding:20px 22px;">
             <h1 style="margin:0; font-size:22px; font-weight:700; color:var(--text-primary,#17212E); font-family:'Saira',sans-serif;">Phone Users</h1>
-            <div style="flex:1; max-width:460px; display:flex; align-items:center; gap:9px; background:var(--surface,#fff); border:1px solid var(--border,#DCE6F3); border-radius:8px; padding:10px 14px; color:var(--text-secondary,#64748B);">
+            <div style="flex:1; max-width:460px; display:flex; align-items:center; gap:9px; background:var(--surface,#fff); border:1px solid var(--border,#DCE6F3); border-radius:8px; padding:10px 14px; color:var(--text-secondary,#425268);">
               <svg data-mdi="magnify" width="17" height="17" viewBox="0 0 24 24"><path fill="currentColor" d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5l-1.5 1.5l-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16A6.5 6.5 0 0 1 3 9.5A6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14S14 12 14 9.5S12 5 9.5 5"/></svg>
               <span style="font-size:14px;">Search by Extension or Display Name</span>
             </div>
@@ -79,24 +79,24 @@
               </div>
             </div>
           </div>
-          <div style="display:grid; grid-template-columns:1.6fr .7fr .8fr 1.9fr .7fr 1.9fr .9fr .9fr; padding:12px 22px; border-top:1px solid var(--divider,#EAEFF6); background:var(--surface-variant,#EAF1FD); font-size:12px; font-weight:700; letter-spacing:.03em; text-transform:uppercase; color:var(--on-surface-variant,#475569);">
+          <div style="display:grid; grid-template-columns:1.6fr .7fr .8fr 1.9fr .7fr 1.9fr .9fr .9fr; padding:12px 22px; border-top:1px solid var(--divider,#EAEFF6); background:var(--surface-variant,#EAF1FD); font-size:12px; font-weight:700; letter-spacing:.03em; text-transform:uppercase; color:var(--on-surface-variant,#374559);">
             <div>Display Name</div><div>Extension</div><div>Features</div><div>Email</div><div>Prefix</div><div>Phone Number</div><div>Created</div><div>Updated</div>
           </div>
           <sc-for list="{{ users }}" as="u" hint-placeholder-count="10">
             <div style="{{ u.rowStyle }}">
               <div style="display:flex; align-items:center; gap:8px; color:var(--text-primary,#17212E); font-weight:600;">
-                <svg data-mdi="cellphone" width="16" height="16" viewBox="0 0 24 24" style="color:var(--text-secondary,#64748B)"><path fill="currentColor" d="M17 19H7V5h10m0-4H7c-1.11 0-2 .89-2 2v18a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V3a2 2 0 0 0-2-2"/></svg>
+                <svg data-mdi="cellphone" width="16" height="16" viewBox="0 0 24 24" style="color:var(--text-secondary,#425268)"><path fill="currentColor" d="M17 19H7V5h10m0-4H7c-1.11 0-2 .89-2 2v18a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V3a2 2 0 0 0-2-2"/></svg>
                 {{ u.name }}
               </div>
-              <div style="color:var(--text-secondary,#64748B);">{{ u.ext }}</div>
+              <div style="color:var(--text-secondary,#425268);">{{ u.ext }}</div>
               <div style="display:flex; gap:6px; color:var(--success,#159B67);">
                 <sc-for list="{{ u.feat }}" as="f" hint-placeholder-count="0"><span style="width:15px; height:15px; display:block; border-radius:3px; background:color-mix(in srgb, var(--success) 55%, transparent);"></span></sc-for>
               </div>
-              <div style="color:var(--text-secondary,#64748B); font-size:13px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap;">{{ u.email }}</div>
-              <div style="color:var(--text-secondary,#64748B);">{{ u.prefix }}</div>
+              <div style="color:var(--text-secondary,#425268); font-size:13px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap;">{{ u.email }}</div>
+              <div style="color:var(--text-secondary,#425268);">{{ u.prefix }}</div>
               <div><span style="display:inline-block; background:var(--surface-variant,#EAF1FD); color:var(--text-primary,#17212E); padding:4px 12px; border-radius:99px; font-size:12.5px;">{{ u.number }}</span></div>
-              <div style="color:var(--text-secondary,#64748B); font-size:13px;">{{ u.created }}</div>
-              <div style="color:var(--text-secondary,#64748B); font-size:13px;">{{ u.updated }}</div>
+              <div style="color:var(--text-secondary,#425268); font-size:13px;">{{ u.created }}</div>
+              <div style="color:var(--text-secondary,#425268); font-size:13px;">{{ u.updated }}</div>
             </div>
           </sc-for>
         </div>
@@ -119,7 +119,7 @@
               </div>
             </div>
           </div>
-          <div style="display:grid; grid-template-columns:1fr 1fr .9fr 1.2fr 1.7fr 1.3fr 1fr 1.2fr; padding:12px 22px; border-top:1px solid var(--divider,#EAEFF6); background:var(--surface-variant,#EAF1FD); font-size:12px; font-weight:700; letter-spacing:.03em; text-transform:uppercase; color:var(--on-surface-variant,#475569);">
+          <div style="display:grid; grid-template-columns:1fr 1fr .9fr 1.2fr 1.7fr 1.3fr 1fr 1.2fr; padding:12px 22px; border-top:1px solid var(--divider,#EAEFF6); background:var(--surface-variant,#EAF1FD); font-size:12px; font-weight:700; letter-spacing:.03em; text-transform:uppercase; color:var(--on-surface-variant,#374559);">
             <div>Audio</div><div>Date</div><div>Duration</div><div>Jet Number</div><div>Service Name</div><div>Customer</div><div>Status</div><div>Phone User</div>
           </div>
           <sc-for list="{{ calls }}" as="c" hint-placeholder-count="10">
@@ -127,16 +127,16 @@
               <div>
                 <sc-if value="{{ c.hasAudio }}" hint-placeholder-val="{{ true }}"><span style="{{ c.audioStyle }}"><svg data-mdi="play" width="11" height="11" viewBox="0 0 24 24"><path fill="currentColor" d="M8 5.14v14l11-7z"/></svg>{{ c.audioLabel }}</span></sc-if>
               </div>
-              <div style="color:var(--text-secondary,#64748B); font-size:13px;">{{ c.date }}</div>
-              <div style="color:var(--text-secondary,#64748B); font-size:13px;">{{ c.dur }}</div>
+              <div style="color:var(--text-secondary,#425268); font-size:13px;">{{ c.date }}</div>
+              <div style="color:var(--text-secondary,#425268); font-size:13px;">{{ c.dur }}</div>
               <div style="color:var(--text-primary,#17212E); font-size:13px; font-weight:600;">{{ c.jet }}</div>
-              <div style="color:var(--text-secondary,#64748B); font-size:13px;">{{ c.service }}</div>
-              <div style="color:var(--text-secondary,#64748B); font-size:13px;">{{ c.cust }}</div>
+              <div style="color:var(--text-secondary,#425268); font-size:13px;">{{ c.service }}</div>
+              <div style="color:var(--text-secondary,#425268); font-size:13px;">{{ c.cust }}</div>
               <div><span style="{{ c.statusStyle }}">{{ c.status }}</span></div>
-              <div style="color:var(--text-secondary,#64748B); font-size:13px;">{{ c.user }}</div>
+              <div style="color:var(--text-secondary,#425268); font-size:13px;">{{ c.user }}</div>
             </div>
           </sc-for>
-          <div style="display:flex; align-items:center; justify-content:flex-end; gap:16px; padding:16px 22px; border-top:1px solid var(--divider,#EAEFF6); color:var(--text-secondary,#64748B); font-size:13px;">
+          <div style="display:flex; align-items:center; justify-content:flex-end; gap:16px; padding:16px 22px; border-top:1px solid var(--divider,#EAEFF6); color:var(--text-secondary,#425268); font-size:13px;">
             <span>Items per page: 25</span>
             <span>1–25 of 43</span>
             <span style="display:inline-flex; align-items:center; gap:2px;"><svg data-mdi="chevron-left" width="18" height="18" viewBox="0 0 24 24"><path fill="currentColor" d="M15.41 16.58L10.83 12l4.58-4.59L14 6l-6 6l6 6z"/></svg><svg data-mdi="chevron-right" width="18" height="18" viewBox="0 0 24 24"><path fill="currentColor" d="M8.59 16.58L13.17 12L8.59 7.41L10 6l6 6l-6 6z"/></svg></span>
@@ -149,11 +149,11 @@
         <div style="background:var(--surface,#fff); border:1px solid var(--border,#DCE6F3); border-radius:10px; box-shadow:0 1px 2px rgba(15,23,42,.05); overflow:hidden;">
           <div style="display:flex; align-items:center; gap:14px; padding:16px 20px; border-bottom:1px solid var(--divider,#EAEFF6);">
             <div style="flex:1; max-width:420px; background:var(--surface,#fff); border:1px solid var(--border,#DCE6F3); border-radius:8px; padding:10px 14px; font-size:14px; font-weight:600; color:var(--text-primary,#17212E);">Ben B desk</div>
-            <span style="background:var(--surface-variant,#EAF1FD); color:var(--on-surface-variant,#475569); padding:5px 12px; border-radius:99px; font-size:12px; font-weight:600;">v13</span>
+            <span style="background:var(--surface-variant,#EAF1FD); color:var(--on-surface-variant,#374559); padding:5px 12px; border-radius:99px; font-size:12px; font-weight:600;">v13</span>
             <div style="margin-left:auto; display:flex; align-items:center; gap:10px;">
               <div style="background:var(--info,#0FB0C0); color:#fff; padding:10px 30px; border-radius:7px; font-weight:700; font-size:13px;">100 %</div>
               <div style="background:var(--warning,#E28A2E); color:#fff; padding:10px 20px; border-radius:7px; font-weight:700; font-size:13px;">CLOSE</div>
-              <div style="background:var(--surface-variant,#EAF1FD); color:var(--on-surface-variant,#475569); padding:10px 18px; border-radius:7px; font-weight:700; font-size:13px;">DRAFT</div>
+              <div style="background:var(--surface-variant,#EAF1FD); color:var(--on-surface-variant,#374559); padding:10px 18px; border-radius:7px; font-weight:700; font-size:13px;">DRAFT</div>
               <div style="background:var(--primary,#2E6BE6); color:#fff; padding:10px 18px; border-radius:7px; font-weight:700; font-size:13px;">AVAILABLE</div>
             </div>
           </div>
@@ -170,16 +170,16 @@
               <!-- Start node -->
               <div style="position:absolute; left:300px; top:20px; width:170px; background:var(--surface,#fff); border:1px solid var(--border,#DCE6F3); border-radius:6px; box-shadow:0 2px 8px rgba(15,23,42,.08);">
                 <div style="display:flex; align-items:center; justify-content:space-between; padding:9px 12px; border-bottom:1px solid var(--divider,#EAEFF6);"><svg data-mdi="play-circle-outline" width="16" height="16" viewBox="0 0 24 24" style="color:var(--text-primary,#17212E)"><path fill="currentColor" d="M12 20c-4.41 0-8-3.59-8-8s3.59-8 8-8s8 3.59 8 8s-3.59 8-8 8m0-18A10 10 0 0 0 2 12a10 10 0 0 0 10 10a10 10 0 0 0 10-10A10 10 0 0 0 12 2m-2 14.5l6-4.5l-6-4.5z"/></svg><span style="font-weight:700; font-size:13px; color:var(--text-primary,#17212E);">Start</span></div>
-                <div style="display:flex; flex-direction:column; align-items:center; padding:16px 0 10px;"><svg data-mdi="microphone" width="20" height="20" viewBox="0 0 24 24" style="color:var(--text-primary,#17212E)"><path fill="currentColor" d="M12 2a3 3 0 0 1 3 3v6a3 3 0 0 1-3 3a3 3 0 0 1-3-3V5a3 3 0 0 1 3-3m7 9c0 3.53-2.61 6.44-6 6.93V21h-2v-3.07c-3.39-.49-6-3.4-6-6.93h2a5 5 0 0 0 5 5a5 5 0 0 0 5-5z"/></svg><span style="font-size:10px; letter-spacing:.08em; color:var(--text-secondary,#64748B); margin-top:8px;">CALL</span></div>
+                <div style="display:flex; flex-direction:column; align-items:center; padding:16px 0 10px;"><svg data-mdi="microphone" width="20" height="20" viewBox="0 0 24 24" style="color:var(--text-primary,#17212E)"><path fill="currentColor" d="M12 2a3 3 0 0 1 3 3v6a3 3 0 0 1-3 3a3 3 0 0 1-3-3V5a3 3 0 0 1 3-3m7 9c0 3.53-2.61 6.44-6 6.93V21h-2v-3.07c-3.39-.49-6-3.4-6-6.93h2a5 5 0 0 0 5 5a5 5 0 0 0 5-5z"/></svg><span style="font-size:10px; letter-spacing:.08em; color:var(--text-secondary,#425268); margin-top:8px;">CALL</span></div>
               </div>
               <div style="position:absolute; left:373px; top:140px; width:16px; height:16px; border-radius:99px; background:var(--warning,#E28A2E); border:2px solid var(--surface,#fff);"></div>
               <!-- Dial node -->
               <div style="position:absolute; left:302px; top:300px; width:152px; background:var(--surface,#fff); border:1px solid var(--border,#DCE6F3); border-radius:6px; box-shadow:0 2px 8px rgba(15,23,42,.08);">
                 <div style="display:flex; align-items:center; justify-content:space-between; padding:9px 12px; border-bottom:1px solid var(--divider,#EAEFF6);"><svg data-mdi="phone" width="15" height="15" viewBox="0 0 24 24" style="color:var(--text-primary,#17212E)"><path fill="currentColor" d="M6.62 10.79c1.44 2.83 3.76 5.15 6.59 6.59l2.2-2.2c.28-.28.67-.36 1.02-.25c1.12.37 2.32.57 3.57.57a1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.25.2 2.45.57 3.57c.11.35.03.74-.25 1.02z"/></svg><span style="font-weight:700; font-size:13px; color:var(--text-primary,#17212E);">Dial</span></div>
                 <div style="display:flex; height:78px;">
-                  <div style="flex:1; display:flex; align-items:flex-end; justify-content:center; border-right:1px solid var(--divider,#EAEFF6); padding-bottom:6px;"><span style="writing-mode:vertical-rl; transform:rotate(180deg); font-size:9px; letter-spacing:.06em; color:var(--text-secondary,#64748B);">ANSWERED</span></div>
-                  <div style="flex:1; display:flex; align-items:flex-end; justify-content:center; border-right:1px solid var(--divider,#EAEFF6); padding-bottom:6px;"><span style="writing-mode:vertical-rl; transform:rotate(180deg); font-size:9px; letter-spacing:.06em; color:var(--text-secondary,#64748B);">BUSY</span></div>
-                  <div style="flex:1; display:flex; align-items:flex-end; justify-content:center; padding-bottom:6px;"><span style="writing-mode:vertical-rl; transform:rotate(180deg); font-size:9px; letter-spacing:.06em; color:var(--text-secondary,#64748B);">UNANSWERED</span></div>
+                  <div style="flex:1; display:flex; align-items:flex-end; justify-content:center; border-right:1px solid var(--divider,#EAEFF6); padding-bottom:6px;"><span style="writing-mode:vertical-rl; transform:rotate(180deg); font-size:9px; letter-spacing:.06em; color:var(--text-secondary,#425268);">ANSWERED</span></div>
+                  <div style="flex:1; display:flex; align-items:flex-end; justify-content:center; border-right:1px solid var(--divider,#EAEFF6); padding-bottom:6px;"><span style="writing-mode:vertical-rl; transform:rotate(180deg); font-size:9px; letter-spacing:.06em; color:var(--text-secondary,#425268);">BUSY</span></div>
+                  <div style="flex:1; display:flex; align-items:flex-end; justify-content:center; padding-bottom:6px;"><span style="writing-mode:vertical-rl; transform:rotate(180deg); font-size:9px; letter-spacing:.06em; color:var(--text-secondary,#425268);">UNANSWERED</span></div>
                 </div>
               </div>
               <div style="position:absolute; left:314px; top:424px; width:15px; height:15px; border-radius:99px; background:var(--success,#159B67); border:2px solid var(--surface,#fff);"></div>
@@ -203,23 +203,23 @@
             <h1 style="margin:0; font-size:22px; font-weight:700; color:var(--text-primary,#17212E); font-family:'Saira',sans-serif;">Signup Management</h1>
             <span style="margin-left:auto; background:var(--success,#159B67); color:#fff; padding:6px 14px; border-radius:99px; font-size:12.5px; font-weight:600;">ID Verifications: 15 / 150</span>
           </div>
-          <div style="display:grid; grid-template-columns:1.1fr 1.1fr 1fr .9fr 1.2fr 1.4fr .6fr .8fr .8fr .7fr .8fr .9fr; padding:12px 22px; border-top:1px solid var(--divider,#EAEFF6); background:var(--surface-variant,#EAF1FD); font-size:11.5px; font-weight:700; letter-spacing:.02em; text-transform:uppercase; color:var(--on-surface-variant,#475569);">
+          <div style="display:grid; grid-template-columns:1.1fr 1.1fr 1fr .9fr 1.2fr 1.4fr .6fr .8fr .8fr .7fr .8fr .9fr; padding:12px 22px; border-top:1px solid var(--divider,#EAEFF6); background:var(--surface-variant,#EAF1FD); font-size:11.5px; font-weight:700; letter-spacing:.02em; text-transform:uppercase; color:var(--on-surface-variant,#374559);">
             <div>Created</div><div>Last Updated</div><div>Trading Name</div><div>Contact</div><div>Mobile</div><div>E-Mail</div><div>Post</div><div>Route</div><div>Plan</div><div>Numbers</div><div>Step</div><div>Action</div>
           </div>
           <sc-for list="{{ signups }}" as="g" hint-placeholder-count="2">
             <div style="{{ g.rowStyle }}">
-              <div style="color:var(--text-secondary,#64748B); font-size:12.5px;">{{ g.created }}</div>
-              <div style="color:var(--text-secondary,#64748B); font-size:12.5px;">{{ g.updated }}</div>
+              <div style="color:var(--text-secondary,#425268); font-size:12.5px;">{{ g.created }}</div>
+              <div style="color:var(--text-secondary,#425268); font-size:12.5px;">{{ g.updated }}</div>
               <div style="color:var(--text-primary,#17212E); font-size:13px; font-weight:600;">{{ g.trading }}</div>
-              <div style="color:var(--text-secondary,#64748B); font-size:13px;">{{ g.contact }}</div>
-              <div style="color:var(--text-secondary,#64748B); font-size:13px;">{{ g.mobile }}</div>
-              <div style="color:var(--text-secondary,#64748B); font-size:13px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap;">{{ g.email }}</div>
-              <div style="color:var(--text-secondary,#64748B); font-size:13px;">{{ g.post }}</div>
-              <div style="color:var(--text-secondary,#64748B); font-size:13px;">{{ g.route }}</div>
-              <div style="color:var(--text-secondary,#64748B); font-size:13px;">{{ g.plan }}</div>
+              <div style="color:var(--text-secondary,#425268); font-size:13px;">{{ g.contact }}</div>
+              <div style="color:var(--text-secondary,#425268); font-size:13px;">{{ g.mobile }}</div>
+              <div style="color:var(--text-secondary,#425268); font-size:13px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap;">{{ g.email }}</div>
+              <div style="color:var(--text-secondary,#425268); font-size:13px;">{{ g.post }}</div>
+              <div style="color:var(--text-secondary,#425268); font-size:13px;">{{ g.route }}</div>
+              <div style="color:var(--text-secondary,#425268); font-size:13px;">{{ g.plan }}</div>
               <div><span style="display:inline-flex; align-items:center; justify-content:center; width:24px; height:24px; border-radius:99px; background:var(--success,#159B67); color:#fff; font-size:12px; font-weight:700;">1</span></div>
               <div><span style="display:inline-block; background:var(--primary,#2E6BE6); color:#fff; padding:5px 12px; border-radius:99px; font-size:12px; font-weight:600;">3 — Address</span></div>
-              <div style="display:flex; gap:8px; color:var(--text-secondary,#64748B);">
+              <div style="display:flex; gap:8px; color:var(--text-secondary,#425268);">
                 <svg data-mdi="pencil" width="16" height="16" viewBox="0 0 24 24" style="color:var(--warning,#E28A2E)"><path fill="currentColor" d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83l3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75z"/></svg>
                 <svg data-mdi="check" width="16" height="16" viewBox="0 0 24 24" style="color:var(--success,#159B67)"><path fill="currentColor" d="M21 7L9 19l-5.5-5.5l1.41-1.41L9 16.17L19.59 5.59z"/></svg>
                 <svg data-mdi="delete" width="16" height="16" viewBox="0 0 24 24" style="color:var(--error,#E23A3F)"><path fill="currentColor" d="M19 4h-3.5l-1-1h-5l-1 1H5v2h14M6 19a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V7H6z"/></svg>
@@ -259,17 +259,17 @@
     <div class="ji-scroll" style="position:fixed; top:0; right:0; height:100vh; width:440px; background:#fff; box-shadow:-16px 0 40px rgba(0,0,0,.2); z-index:61; overflow:auto; padding:26px; font-family:'Barlow',sans-serif;">
       <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:6px;">
         <h2 style="margin:0; font-size:19px; font-weight:700; color:#17212E; font-family:'Saira',sans-serif;">Theme token values</h2>
-        <div onClick="{{ toggleTokens }}" style="cursor:pointer; color:#64748B; display:flex; align-items:center;"><svg data-mdi="close" width="18" height="18" viewBox="0 0 24 24"><path fill="currentColor" d="M19 6.41L17.59 5L12 10.59L6.41 5L5 6.41L10.59 12L5 17.59L6.41 19L12 13.41L17.59 19L19 17.59L13.41 12z"/></svg></div>
+        <div onClick="{{ toggleTokens }}" style="cursor:pointer; color:#425268; display:flex; align-items:center;"><svg data-mdi="close" width="18" height="18" viewBox="0 0 24 24"><path fill="currentColor" d="M19 6.41L17.59 5L12 10.59L6.41 5L5 6.41L10.59 12L5 17.59L6.41 19L12 13.41L17.59 19L19 17.59L13.41 12z"/></svg></div>
       </div>
-      <p style="margin:0 0 18px; font-size:13px; color:#64748B; line-height:1.5;">Showing the <strong style="color:#17212E;">{{ accentLabel }}</strong> accent. Paste these hexes straight into your <code style="background:#EEF0F3; padding:1px 5px; border-radius:4px;">colors</code> and <code style="background:#EEF0F3; padding:1px 5px; border-radius:4px;">darkColors</code> objects.</p>
+      <p style="margin:0 0 18px; font-size:13px; color:#425268; line-height:1.5;">Showing the <strong style="color:#17212E;">{{ accentLabel }}</strong> accent. Paste these hexes straight into your <code style="background:#EEF0F3; padding:1px 5px; border-radius:4px;">colors</code> and <code style="background:#EEF0F3; padding:1px 5px; border-radius:4px;">darkColors</code> objects.</p>
       <div style="display:grid; grid-template-columns:1.4fr 1fr 1fr; gap:0; font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:.04em; color:#94A3B8; padding:0 0 8px; border-bottom:1px solid #E5EAF2;">
         <div>Token</div><div>Light</div><div>Dark</div>
       </div>
       <sc-for list="{{ tokenRows }}" as="r" hint-placeholder-count="15">
         <div style="display:grid; grid-template-columns:1.4fr 1fr 1fr; gap:0; align-items:center; padding:9px 0; border-bottom:1px solid #F1F4F9;">
           <div style="font-size:12.5px; font-family:'JetBrains Mono',monospace; color:#2A2A2E;">{{ r.name }}</div>
-          <div style="display:flex; align-items:center; gap:7px;"><span style="{{ r.lightSwatch }}"></span><span style="font-size:11.5px; font-family:'JetBrains Mono',monospace; color:#64748B;">{{ r.light }}</span></div>
-          <div style="display:flex; align-items:center; gap:7px;"><span style="{{ r.darkSwatch }}"></span><span style="font-size:11.5px; font-family:'JetBrains Mono',monospace; color:#64748B;">{{ r.dark }}</span></div>
+          <div style="display:flex; align-items:center; gap:7px;"><span style="{{ r.lightSwatch }}"></span><span style="font-size:11.5px; font-family:'JetBrains Mono',monospace; color:#425268;">{{ r.light }}</span></div>
+          <div style="display:flex; align-items:center; gap:7px;"><span style="{{ r.darkSwatch }}"></span><span style="font-size:11.5px; font-family:'JetBrains Mono',monospace; color:#425268;">{{ r.dark }}</span></div>
         </div>
       </sc-for>
     </div>
@@ -317,9 +317,9 @@ class Component extends DCLogic {
       '--background': '#F4F7FB',
       '--surface': '#FFFFFF',
       '--surface-variant': '#EAF1FD',
-      '--on-surface-variant': '#475569',
+      '--on-surface-variant': '#374559',
       '--text-primary': '#17212E',
-      '--text-secondary': '#64748B',
+      '--text-secondary': '#425268',
       '--border': '#DCE6F3',
       '--divider': '#EAEFF6',
     };
