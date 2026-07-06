@@ -122,15 +122,20 @@ const colors = {
 | `background` | `#1a2533` | **`#141C28`** | `#141C28` |
 | `surface` | `#2c3644` | **`#1E2937`** | `#1E2937` |
 | `surface-variant` | `#434f5a` | **`#2A3543`** | `#2A3543` |
-| `on-surface-variant` | `#d6dde5` | **`#C6D2E0`** | `#C6D2E0` |
+| `on-surface-variant` | `#d6dde5` | **`#CDD8E4`** | `#CDD8E4` |
 | `text-primary` | `#ededed` | **`#EDF1F6`** | `#EDF1F6` |
-| `text-secondary` | `#aaaaaa` | **`#8E9CB0`** | `#8E9CB0` |
+| `text-secondary` | `#aaaaaa` | **`#A3B2C6`** | `#A3B2C6` |
 | `border` | `#3c3c3c` | **`#303C4B`** | `#303C4B` |
 | `divider` | `#ffffff` | **`#28323F`** | `#28323F` |
 
 > Note: the current `darkColors.divider` is `#ffffff` (pure white), which reads as harsh
 > full-width lines. The new value `#28323F` is a subtle dark divider consistent with the
 > surface palette. Confirm this is the intended behaviour before shipping.
+
+> Contrast revision (2026-07-06): `text-secondary` lightened `#8E9CB0` → `#A3B2C6`
+> (5.3:1 → 6.8:1 on `surface`) and `on-surface-variant` `#C6D2E0` → `#CDD8E4`
+> (8.1:1 → 8.6:1) after feedback that dark-theme muted text sat too low. Both keep
+> the same slate-blue hue; `text-primary` was already 13:1 and is unchanged.
 
 ### Dark theme — paste-ready (Blue accent)
 ```js
@@ -145,9 +150,9 @@ const darkColors = {
   background: '#141C28',
   surface: '#1E2937',
   'surface-variant': '#2A3543',
-  'on-surface-variant': '#C6D2E0',
+  'on-surface-variant': '#CDD8E4',
   'text-primary': '#EDF1F6',
-  'text-secondary': '#8E9CB0',
+  'text-secondary': '#A3B2C6',
   border: '#303C4B',
   divider: '#28323F',
 }
@@ -166,9 +171,9 @@ const darkColors = {
   background: '#141C28',
   surface: '#1E2937',
   'surface-variant': '#2A3543',
-  'on-surface-variant': '#C6D2E0',
+  'on-surface-variant': '#CDD8E4',
   'text-primary': '#EDF1F6',
-  'text-secondary': '#8E9CB0',
+  'text-secondary': '#A3B2C6',
   border: '#303C4B',
   divider: '#28323F',
 }
